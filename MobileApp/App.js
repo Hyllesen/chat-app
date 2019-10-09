@@ -1,24 +1,12 @@
-import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import io from "socket.io-client";
+console.ignoredYellowBox = ["Remote debugger"];
+import { YellowBox } from "react-native";
+YellowBox.ignoreWarnings([
+  "Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?"
+]);
+
+import React from "react";
+import HomeScreen from "./screens/HomeScreen";
 
 export default function App() {
-  useEffect(function() {
-    io("http://192.168.0.10:3001");
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <Text>Hello React Native!</Text>
-    </View>
-  );
+  return <HomeScreen />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
