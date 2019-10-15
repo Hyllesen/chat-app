@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -8,7 +8,8 @@ import {
   KeyboardAvoidingView
 } from "react-native";
 
-export default function JoinScreen() {
+export default function JoinScreen({ joinChat }) {
+  const [username, setUsername] = useState("");
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Image
@@ -18,10 +19,12 @@ export default function JoinScreen() {
       />
       <View style={{ flex: 1, justifyContent: "space-around" }}>
         <TextInput
+          onChangeText={text => setUsername(text)}
+          value={username}
           style={{ fontSize: 30, textAlign: "center" }}
           placeholder="Enter username"
         />
-        <Button title="Join Chat" />
+        <Button title="Join Chat" onPress={() => joinChat(username)} />
       </View>
       {Platform.OS === "ios" && <KeyboardAvoidingView behavior="padding" />}
     </View>
