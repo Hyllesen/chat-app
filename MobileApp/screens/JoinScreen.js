@@ -17,7 +17,10 @@ export default function JoinScreen() {
         source={require("../assets/chat-icon.png")}
       />
       <View style={{ flex: 1, justifyContent: "space-around" }}>
-        <TextInput style={{ fontSize: 30 }} placeholder="Enter username" />
+        <TextInput
+          style={{ fontSize: 30, textAlign: "center" }}
+          placeholder="Enter username"
+        />
         <Button title="Join Chat" />
       </View>
       {Platform.OS === "ios" && <KeyboardAvoidingView behavior="padding" />}
