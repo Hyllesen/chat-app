@@ -28,18 +28,14 @@ export default function HomeScreen() {
 
   return (
     <View style={{ flex: 1 }}>
-      {hasJoined ? (
-        <GiftedChat
-          renderUsernameOnMessage
-          messages={recvMessages}
-          onSend={messages => onSend(messages)}
-          user={{
-            _id: 1
-          }}
-        />
-      ) : (
-        <JoinScreen joinChat={joinChat} />
-      )}
+      <GiftedChat
+        renderUsernameOnMessage
+        messages={recvMessages}
+        onSend={messages => onSend(messages)}
+        user={{
+          _id: 1
+        }}
+      />
       {Platform.OS === "android" && <KeyboardAvoidingView behavior="padding" />}
     </View>
   );
