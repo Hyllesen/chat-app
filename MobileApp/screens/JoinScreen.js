@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useDispatch } from "react-redux";
 
-export default function JoinScreen({ joinChat }) {
+export default function JoinScreen({ navigation }) {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   return (
@@ -28,10 +28,13 @@ export default function JoinScreen({ joinChat }) {
         />
         <Button
           title="Join Chat"
-          onPress={() => dispatch({ type: "server/join", data: username })}
+          onPress={() => {
+            dispatch({ type: "server/join", data: username });
+            navigation.navigate("App");
+          }}
         />
       </View>
-      {Platform.OS === "ios" && <KeyboardAvoidingView behavior="padding" />}
+      <KeyboardAvoidingView behavior="padding" />
     </View>
   );
 }
