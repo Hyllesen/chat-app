@@ -18,6 +18,9 @@
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.9.4",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "redux-socket.io": "^1.4.0",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {

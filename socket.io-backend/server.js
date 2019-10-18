@@ -19,6 +19,13 @@ io.on("connection", socket => {
     users[socket.id].avatar = createUserAvatarUrl();
     messageHandler.handleMessage(socket, users);
   });
+  socket.on("action", action => {
+    switch (action.type) {
+      case "server/hello":
+        console.log("Got hello event", action.data);
+        socket.emit("action", { type: "message", data: "Good day!" });
+    }
+  });
 });
 
 io.listen(3001);
