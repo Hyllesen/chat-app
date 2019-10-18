@@ -4,6 +4,7 @@ YellowBox.ignoreWarnings([
   "Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?"
 ]);
 import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
 import createSocketIoMiddleware from "redux-socket.io";
 import io from "socket.io-client";
 import React from "react";
@@ -28,5 +29,9 @@ store.subscribe(() => {
 store.dispatch({ type: "server/hello", data: "Hello!" });
 
 export default function App() {
-  return <AppContainer />;
+  return (
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  );
 }
