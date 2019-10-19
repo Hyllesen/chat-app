@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useSelector } from "react-redux";
 
-export default function FriendListScreen() {
+export default function FriendListScreen({ navigation }) {
   const usersOnline = useSelector(state => state.usersOnline);
   console.log("usersOnline", usersOnline);
 
@@ -22,7 +22,11 @@ export default function FriendListScreen() {
         renderItem={({ item }) => {
           console.log("item", item);
           return (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("Chat", { name: item.username })
+              }
+            >
               <View style={itemContainerStyle}>
                 <Image style={avatarImgStyle} source={{ uri: item.avatar }} />
                 <View style={avatarNameViewStyle}>
