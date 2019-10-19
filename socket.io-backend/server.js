@@ -44,6 +44,8 @@ io.on("connection", socket => {
           data: createUsersOnline()
         });
         break;
+      case "server/private-message":
+        console.log("Got a private-message", action.data);
     }
   });
 });
