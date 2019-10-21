@@ -48,7 +48,7 @@ io.on("connection", socket => {
               type: "private_message",
               data: {
                 ...action.data,
-                from
+                conversationId: from
               }
             });
             break;
