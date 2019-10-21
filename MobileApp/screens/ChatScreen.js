@@ -2,7 +2,7 @@ import React from "react";
 import { View, Platform, KeyboardAvoidingView } from "react-native";
 import { GiftedChat } from "react-native-gifted-chat";
 import { Header } from "react-navigation-stack";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 ChatScreen.navigationOptions = screenProps => ({
   title: screenProps.navigation.getParam("name")
@@ -10,6 +10,7 @@ ChatScreen.navigationOptions = screenProps => ({
 
 export default function ChatScreen({ navigation }) {
   const dispatch = useDispatch();
+  const selfUser = useSelector(state => state.selfUser);
   return (
     <View style={{ flex: 1 }}>
       <GiftedChat
@@ -22,7 +23,7 @@ export default function ChatScreen({ navigation }) {
           })
         }
         user={{
-          _id: 1
+          _id: selfUser.userId
         }}
       />
       {Platform.OS === "android" && (

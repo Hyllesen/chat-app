@@ -20,21 +20,12 @@ io.on("connection", socket => {
   console.log("a user connected!");
   console.log(socket.id);
   users[socket.id] = { userId: uuidv1() };
-  socket.on("join", username => {
-    users[socket.id].username = username;
-    users[socket.id].avatar = createUserAvatarUrl();
-    messageHandler.handleMessage(socket, users);
-  });
   socket.on("disconnect", () => {
     delete users[socket.id];
     io.emit("action", { type: "users_online", data: createUsersOnline() });
   });
   socket.on("action", action => {
     switch (action.type) {
-      case "server/hello":
-        console.log("Got hello event", action.data);
-        socket.emit("action", { type: "message", data: "Good day!" });
-        break;
       case "server/join":
         console.log("Got join event", action.data);
         users[socket.id].username = action.data;
@@ -43,6 +34,7 @@ io.on("connection", socket => {
           type: "users_online",
           data: createUsersOnline()
         });
+        socket.emit("action", { type: "self_user", data: users[socket.id] });
         break;
       case "server/private-message":
         console.log("Got a private-message", action.data);

@@ -11,16 +11,12 @@ import { useSelector } from "react-redux";
 
 export default function FriendListScreen({ navigation }) {
   const usersOnline = useSelector(state => state.usersOnline);
-  console.log("usersOnline", usersOnline);
-
   const { itemContainerStyle, avatarImgStyle, avatarNameViewStyle } = styles;
-
   return (
     <View style={{ flex: 1 }}>
       <FlatList
         data={usersOnline}
         renderItem={({ item }) => {
-          console.log("item", item);
           return (
             <TouchableOpacity
               onPress={() =>
